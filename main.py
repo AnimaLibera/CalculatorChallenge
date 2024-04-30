@@ -33,11 +33,17 @@ def test():
     #print(is_subtraction("-"))
     #print(is_subtraction("!"))
 
+    print(is_white_space(" "))
+    print(is_white_space("!"))
+
+    #pass
+
 def main():
     print("Challenge Calculator")
     
     terms = input("Inpute Terms: ")
-    print(terms)
+    notation_list = filter_for_valid_symbols(terms)
+    print(notation_list)
 
 def filter_for_valid_symbols(notation):
     """Filters all valid symbols and return a list"""
@@ -50,9 +56,13 @@ def filter_for_valid_symbols(notation):
         if is_valid_symbol(temporer_notation):
             filterd_notation.append(temporer_notation)
             temporer_notation = ""
+        elif is_white_space(temporer_notation):
+            temporer_notation = ""
     
     if len(temporer_notation) != 0:
-        print(f"Error! Restnoation: {temporer_notation}")
+        raise ValueError(f"Part \"{temporer_notation}\" of notation could not by parsed")
+    
+    return filterd_notation
 
 def is_valid_symbol(symbol):
     """Check if symbol (string) is valid operator, operant or parentheses"""
@@ -62,7 +72,7 @@ def is_valid_symbol(symbol):
 def is_operator(symbol):
     """Check if symbol (string) is valid operator"""
 
-    return False
+    return is_multiplication(symbol) or is_division(symbol) or is_addition(symbol) or is_subtraction(symbol)
 
 def is_operant(symbol):
     """Check if symbol (string) is valid operant"""
@@ -78,6 +88,14 @@ def is_parentheses(symbol):
         return False
 
     return True
+
+def is_white_space(symbol):
+    """check if symbol (string) is a white space"""
+
+    if symbol not in " ":
+        return False
+    
+    return True and not is_empty(symbol)
 
 def is_multiplication(symbol):
     """Check if symbol (string) is multiplication operator"""
@@ -146,5 +164,5 @@ def is_empty(symbol):
 def transform_to_prefix_notation(infix_notation):
     pass
 
-test()
-#main()
+#test()
+main()
