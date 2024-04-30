@@ -1,1 +1,1 @@
-Read onyl Policy
+Read, Execute und Copy is permitted
