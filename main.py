@@ -45,12 +45,15 @@ def main():
     print("Name:\t\tChallenge Calculator")
     print("Author:\t\tGianni-Lauritz Grubert")
     print("License:\tRead, Execute und Copy is permitted")
-    
-    terms = input("Input Terms:\t")
+    print()
+    print("Available Operants:\tInteger i.e. 5 and floating i.e. 12.0 Numbers")
+    print("Available Operators:\t* / + -")
+    print("Available Parentheses:\t( )")
+    print()
+    terms = input("Input Terms: ")
     notation_list = filter_for_valid_symbols(terms)
     print(notation_list)
     print(convert_to_postfix_notation(notation_list))
-
-
+    
 #test()
 main()
