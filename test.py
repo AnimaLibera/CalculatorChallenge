@@ -50,5 +50,15 @@ def test():
     assert is_white_space(" ") == True
     assert is_white_space("!") == False
 
+    print("Testing convert_to_postfix_notation()")
+    notation_1 = filter_for_valid_symbols("2 + 2")
+    notation_2 = filter_for_valid_symbols("((2 + 2) * 3)")
+    notation_3 = filter_for_valid_symbols("(3 + 4)*(5 - 6)")
+    notation_4 = filter_for_valid_symbols("2 * 3 / 4")
+    assert convert_to_postfix_notation(notation_1) == ["2","2","+"]
+    assert convert_to_postfix_notation(notation_2) == ["2","2","+","3","*"]
+    assert convert_to_postfix_notation(notation_3) == ["3","4","+","5","6","-","*"]
+    assert convert_to_postfix_notation(notation_4) == ["2","3","*","4","/"]
+
 if __name__ == "__main__":
     test()

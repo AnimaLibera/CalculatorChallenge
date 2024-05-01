@@ -23,8 +23,6 @@ def convert_to_postfix_notation(infix_notation):
             while not len(stack) == 0 and not is_opening_parentheses(stack[-1]):
                 postfix_notation.append(stack.pop())
             if len(stack) == 0:
-                print(f"Stack {stack}")
-                print(f"Postfix notation {postfix_notation}")
                 raise ValueError("The closing parentheses does not lead an opening parentheses")
             stack.pop() #Remove opening Parentheses
             if not len(stack) == 0 and is_function(stack[-1]):

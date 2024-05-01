@@ -1,7 +1,7 @@
 def is_valid_symbol(symbol):
     """Check if symbol (string) is valid operator or operant"""
 
-    return is_operant(symbol) or is_operator(symbol)
+    return is_operant(symbol) or is_operator(symbol) or is_parentheses(symbol)
 
 def is_function(symbol):
     """Check if symbol (string) is valid function"""
