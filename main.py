@@ -15,7 +15,9 @@ def main():
     else:
         notation_list = filter_for_valid_symbols(possible_command)
         print(notation_list)
-        print(convert_to_postfix_notation(notation_list))
+        postfix_notation = convert_to_postfix_notation(notation_list)
+        print(postfix_notation)
+        print(evaluate_postfix_notation(postfix_notation))
 
 def print_info():
     print("Name:\t\tChallenge Calculator")

@@ -1,5 +1,35 @@
 from filter import *
 
+def evaluate_postfix_notation(postfix_notation):
+    """Evaluate postfix notation"""
+
+    stack = []
+
+    for element in postfix_notation:
+        if is_number(element):
+            stack.append(element)
+        elif is_operator(element):
+            right = stack.pop()
+            left = stack.pop()
+            stack.append(compute(left, element, right))
+    
+    return stack.pop()
+
+def compute(left, operator, right):
+    """Compute binary operator with tow operants"""
+    left_number = float(left)
+    right_number = float(right)
+    
+    match operator:
+        case "*":
+            return left_number * right_number
+        case "/":
+            return left_number / right_number
+        case "+":
+            return left_number + right_number
+        case "-":
+            return left_number - right_number
+
 def convert_to_postfix_notation(infix_notation):
     """Convert infix notation to postfix notation with the shunting-yard-algorithmen"""
 
