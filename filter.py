@@ -11,7 +11,7 @@ def is_function(symbol):
 def is_operator(symbol):
     """Check if symbol (string) is valid operator"""
 
-    return is_parentheses(symbol) or is_multiplication(symbol) or is_division(symbol) or is_addition(symbol) or is_subtraction(symbol)
+    return is_multiplication(symbol) or is_division(symbol) or is_addition(symbol) or is_subtraction(symbol)
 
 def is_operant(symbol):
     """Check if symbol (string) is valid operant"""

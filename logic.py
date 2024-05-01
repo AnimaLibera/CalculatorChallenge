@@ -7,27 +7,35 @@ def convert_to_postfix_notation(infix_notation):
     stack = []
 
     for element in infix_notation:
-
         if is_operant(element):
             postfix_notation.append(element)
+        elif is_function(element):
+            stack.append(element)
         elif is_operator(element):
-            
             while not len(stack) == 0  \
             and is_operator(stack[-1]) \
             and (get_operator_precedence(element) < get_operator_precedence(stack[-1]) or (get_operator_precedence(element) == get_operator_precedence(stack[-1]) and is_left_associative(element))):
                 postfix_notation.append(stack.pop())
-
             stack.append(element)
-
-        #elif is_function(element) and len(stack) == 0:
-        #    stack.append(element)
-        #elif is_parentheses(element):
-        #    while len(stack) > 0 and not is_opening_parentheses(stack[-1]):
-        #        postfix_notation.append(stack.pop())
-        #    if len(stack) == 0:
-        #        raise ValueError("Stack is empty and closing parentheses is missing")
+        elif is_opening_parentheses(element):
+            stack.append(element)
+        elif is_closing_parentheses(element):
+            while not len(stack) == 0 and not is_opening_parentheses(stack[-1]):
+                postfix_notation.append(stack.pop())
+            if len(stack) == 0:
+                print(f"Stack {stack}")
+                print(f"Postfix notation {postfix_notation}")
+                raise ValueError("The closing parentheses does not lead an opening parentheses")
+            stack.pop() #Remove opening Parentheses
+            if not len(stack) == 0 and is_function(stack[-1]):
+                postfix_notation.append(stack.pop())
         else:
             raise ValueError(f"Element \"{element}\" is not an operant or function")
+
+    while not len(stack) == 0:
+        if is_opening_parentheses(stack[-1]):
+            raise ValueError("There are more opening then closing parentheses")
+        postfix_notation.append(stack.pop())
 
     return postfix_notation
 
