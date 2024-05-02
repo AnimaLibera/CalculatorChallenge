@@ -60,5 +60,13 @@ def test():
     assert convert_to_postfix_notation(notation_3) == ["3","4","+","5","6","-","*"]
     assert convert_to_postfix_notation(notation_4) == ["2","3","*","4","/"]
 
+    print("Testing full computation")
+    notation_1 = filter_for_valid_symbols("(3 + 4)*(5 - 6)")
+    assert notation_1 == ["(","3","+","4",")","*","(","5","-","6",")"]
+    postfix_notation_1 = convert_to_postfix_notation(notation_1)
+    assert postfix_notation_1 == ["3","4","+","5","6","-","*"]
+    value_1 = evaluate_postfix_notation(postfix_notation_1)
+    assert value_1 == -7
+
 if __name__ == "__main__":
     test()

@@ -8,14 +8,17 @@ def evaluate_postfix_notation(postfix_notation):
     for element in postfix_notation:
         if is_number(element):
             stack.append(element)
-        elif is_operator(element):
+        elif is_binary_operator(element):
             right = stack.pop()
             left = stack.pop()
-            stack.append(compute(left, element, right))
+            stack.append(compute_binary_operator(left, element, right))
+        elif is_unary_function(element):
+            value = stack.pop()
+            stack.append(compute_unary_function(element, value))
     
     return stack.pop()
 
-def compute(left, operator, right):
+def compute_binary_operator(left, operator, right):
     """Compute binary operator with tow operants"""
     left_number = float(left)
     right_number = float(right)
@@ -29,6 +32,13 @@ def compute(left, operator, right):
             return left_number + right_number
         case "-":
             return left_number - right_number
+
+def compute_unary_function(function, value):
+    """Compute unary function with one value"""
+    value_number = float(value)
+
+    if is_negative_function(function):
+        return value_number * -1
 
 def convert_to_postfix_notation(infix_notation):
     """Convert infix notation to postfix notation with the shunting-yard-algorithmen"""
@@ -103,7 +113,7 @@ def filter_for_valid_symbols(notation):
         elif is_integer(temporer_notation) and not beginn_of_number:
             beginn_of_number = True
         
-        if is_operator(temporer_notation) or is_parentheses(temporer_notation):
+        if is_operator(temporer_notation) or is_parentheses(temporer_notation) or is_function(temporer_notation):
             filterd_notation.append(temporer_notation)
             temporer_notation = ""
         elif is_white_space(temporer_notation):

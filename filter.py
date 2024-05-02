@@ -6,10 +6,28 @@ def is_valid_symbol(symbol):
 def is_function(symbol):
     """Check if symbol (string) is valid function"""
     
-    pass
+    return is_negative_function(symbol)
+
+def is_unary_function(symbol):
+    """Check if symbol (string) is valid unary function"""
+
+    return is_negative_function(symbol)
+
+def is_negative_function(symbol):
+    """Check if symbol (string) is valid negative function"""
+
+    if symbol not in ["neg", "NEG"]:
+        return False
+
+    return True and not is_empty(symbol)
 
 def is_operator(symbol):
     """Check if symbol (string) is valid operator"""
+
+    return is_multiplication(symbol) or is_division(symbol) or is_addition(symbol) or is_subtraction(symbol)
+
+def is_binary_operator(symbol):
+    """Check if symbol (string) is valid binary operator"""
 
     return is_multiplication(symbol) or is_division(symbol) or is_addition(symbol) or is_subtraction(symbol)
 
