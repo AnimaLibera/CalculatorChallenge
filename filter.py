@@ -24,12 +24,12 @@ def is_negative_function(symbol):
 def is_operator(symbol):
     """Check if symbol (string) is valid operator"""
 
-    return is_multiplication(symbol) or is_division(symbol) or is_addition(symbol) or is_subtraction(symbol)
+    return is_binary_operator(symbol)
 
 def is_binary_operator(symbol):
     """Check if symbol (string) is valid binary operator"""
 
-    return is_multiplication(symbol) or is_division(symbol) or is_addition(symbol) or is_subtraction(symbol)
+    return is_multiplication(symbol) or is_division(symbol) or is_addition(symbol) or is_subtraction(symbol) or is_power(symbol)
 
 def is_operant(symbol):
     """Check if symbol (string) is valid operant"""
@@ -97,6 +97,14 @@ def is_subtraction(symbol):
     """Check if symbol (string) is subtraction operator"""
     
     if symbol not in "-":
+        return False
+
+    return True and not is_empty(symbol)
+
+def is_power(symbol):
+    """Check if symbol) is power oprator"""
+
+    if symbol not in "^":
         return False
 
     return True and not is_empty(symbol)

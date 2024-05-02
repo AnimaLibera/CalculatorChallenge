@@ -23,15 +23,18 @@ def compute_binary_operator(left, operator, right):
     left_number = float(left)
     right_number = float(right)
     
-    match operator:
-        case "*":
-            return left_number * right_number
-        case "/":
-            return left_number / right_number
-        case "+":
-            return left_number + right_number
-        case "-":
-            return left_number - right_number
+    if is_multiplication(operator):
+        return left_number * right_number
+    elif is_division(operator):
+        return left_number / right_number
+    elif is_addition(operator):
+        return left_number + right_number
+    elif is_subtraction(operator):
+        return left_number - right_number
+    elif is_power(operator):
+        return left_number ** right_number
+    else:
+        raise ValueError(f"Symbol \"{operator}\" ist not a valid operator")
 
 def compute_unary_function(function, value):
     """Compute unary function with one value"""
