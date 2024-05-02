@@ -26,9 +26,10 @@ def print_info():
     print("License:\tRead, execute und copy is permitted")
 
 def print_help():
-    print("Available Operants:\tInteger i.e. 5 and floating i.e. 12.0 Numbers")
-    print("Available Operators:\t* / + -")
-    print("Available Parentheses:\t( )")
+    print("Available operants:\tInteger i.e. 5 and floating i.e. 12.0 numbers")
+    print("Available operators:\t* / + - ^")
+    print("Available parentheses:\t( )")
+    print("Available functions:\tNegative (neg, NEG)")
 
 if __name__ == "__main__":
     main()

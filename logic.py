@@ -83,7 +83,9 @@ def convert_to_postfix_notation(infix_notation):
 def get_operator_precedence(symbol):
     """Returns precedence of operator symbol (string)"""
 
-    if is_multiplication(symbol):
+    if is_power(symbol):
+        return 2
+    elif is_multiplication(symbol):
         return 1
     elif is_division(symbol):
         return 1
